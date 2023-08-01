@@ -1,11 +1,12 @@
 import React from 'react'
-import { AppBar, Slider } from '.'
+import { AppBar, ProductCard, Slider } from '.'
 
 const Dashboard = () => {
     return (
         <>
-            <AppBar />
-            <Slider />
+            {/* <AppBar />
+            <Slider /> */}
+            <ProductCard />
         </>
     )
 }
