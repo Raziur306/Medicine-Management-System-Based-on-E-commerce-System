@@ -2,6 +2,10 @@ import { styled, Box, TextField } from "@mui/material";
 
 
 export const StyledParentBox = styled(Box)({
+    top: 0,
+    position: 'fixed',
+    zIndex: 999,
+    width: '100%',
     background: '#008069',
     display: 'flex',
     flexDirection: 'row',
