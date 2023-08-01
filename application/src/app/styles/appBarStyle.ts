@@ -1,4 +1,4 @@
-import { styled, Box, TextField } from "@mui/material";
+import { styled, Box, TextField, Typography } from "@mui/material";
 
 
 export const StyledParentBox = styled(Box)({
@@ -59,3 +59,19 @@ export const StyledSearchField = styled((TextField))({
         },
     }
 });
+
+
+export const StyledCartCounterTypography = styled(Typography)({
+    background: 'red',
+    width: 20,
+    height: 20,
+    borderRadius: 50,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    padding: 5,
+    position: 'absolute',
+    top: 33,
+    right: 56
+})
