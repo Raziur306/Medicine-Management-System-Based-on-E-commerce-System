@@ -1,7 +1,7 @@
-import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import ThemeRegistry from './theme/ThemeRegistry'
+import { LoginContextProvider } from './context/LoginContext'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThemeRegistry>
-        <body className={inter.className}>{children}</body>
+        <LoginContextProvider>
+          <body className={inter.className}>{children}</body>
+        </LoginContextProvider>
       </ThemeRegistry>
     </html>
   )
