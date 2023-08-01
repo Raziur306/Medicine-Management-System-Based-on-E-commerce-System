@@ -1,2 +1,6 @@
 export { default as Login } from './Login'
 export { default as Registration } from './Registration'
+export { default as Dashboard } from './Dashboard'
+export { default as AppBar } from './AppBar'
+export { default as Footer } from './Footer'
+export { default as Slider } from './Slider'

@@ -34,10 +34,12 @@ const Registration = () => {
     return (
         <StyledParentBox>
             <StyledBox>
-                <StyledTypography>Register Yourself</StyledTypography>
+                <StyledTypography>Register Your Store</StyledTypography>
+                <StyledTextField onChange={handleOnChange} name='pharmacyName' type='text' placeholder='Enter Pharmacy name' />
                 <StyledTextField onChange={handleOnChange} name='name' type='text' placeholder='Enter your name' />
                 <StyledTextField onChange={handleOnChange} name='email' type='email' placeholder='Enter your email' />
                 <StyledTextField onChange={handleOnChange} name='phone' type='number' placeholder='Enter your phone number' />
+                <StyledTextField onChange={handleOnChange} name='licenseNumber' type='number' placeholder='Enter Trade License number' />
                 <StyledTextField onChange={handleOnChange} name='password' type='password' placeholder='Enter your password' />
                 <StyledLoginBtn onClick={handleOnRegisterBtnClick}>Register</StyledLoginBtn>
                 <StyledRegisterTypography>Already have an account? <StyledTypographyBtn onClick={handleLoginClick}> Login</StyledTypographyBtn>

@@ -11,7 +11,7 @@ interface ChildrenType {
 }
 
 export const LoginContextProvider = ({ children }: ChildrenType) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [showLogin, setShowLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +20,8 @@ export const LoginContextProvider = ({ children }: ChildrenType) => {
     return <LoginContext.Provider value={{
         showLogin,
         setShowLogin,
-        isLoading
+        isLoading,
+        isLoggedIn
     }}>
         {children}
     </LoginContext.Provider>

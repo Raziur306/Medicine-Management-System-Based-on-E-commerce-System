@@ -14,7 +14,7 @@ export const StyledParentBox = styled(Box)({
 export const StyledBox = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
-    width: '20%',
+    width: '22%',
     margin: 'auto',
     padding: 10,
     boxShadow: "0px 0px 8px black",

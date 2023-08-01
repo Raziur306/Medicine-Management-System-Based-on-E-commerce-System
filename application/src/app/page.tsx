@@ -2,18 +2,19 @@
 
 import Image from 'next/image'
 import styles from './page.module.css'
-import { Login, Registration } from './components'
+import { Login, Registration, Dashboard } from './components'
 import { useContext } from 'react'
 import { LoginContext } from './context/LoginContext'
 
 const Home = () => {
-  const { showLogin, setShowLogin, isLoading } = useContext(LoginContext)
+  const { showLogin, isLoading, isLoggedIn } = useContext(LoginContext)
 
 
   return (
     <>
-      {showLogin && <Login />}
-      {!showLogin && <Registration />}
+      {(showLogin && !isLoggedIn) && <Login />}
+      {(!showLogin && !isLoggedIn) && <Registration />}
+      {isLoggedIn && <Dashboard />}
     </>)
 }
 
