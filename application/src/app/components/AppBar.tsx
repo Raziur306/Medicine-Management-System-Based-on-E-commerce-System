@@ -6,7 +6,9 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { StyledParentBox, StyledRowBox, StyledCartBox, StyledSearchField } from '../styles/appBarStyle';
 
-function AppBar() {
+
+
+const AppBar = () => {
     return (
         <StyledParentBox>
             <Box sx={{ cursor: 'pointer' }}>
