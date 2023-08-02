@@ -51,9 +51,6 @@ export const StyledSearchField = styled((TextField))({
         '&:hover fieldset': {
             border: 'none'
         },
-        '&:hover fieldset': {
-            border: 'none',
-        },
         '&.Mui-focused fieldset': {
             border: 'none'
         },
@@ -74,4 +71,13 @@ export const StyledCartCounterTypography = styled(Typography)({
     position: 'absolute',
     top: 33,
     right: 56
-})
+});
+
+export const StyledAccountBox = styled(Box)({
+    cursor: "pointer",
+    padding: 5,
+    borderRadius: 5,
+    ':hover': {
+        border: '1px solid white',
+    }
+});

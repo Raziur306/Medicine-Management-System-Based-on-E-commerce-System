@@ -4,14 +4,22 @@ import React from 'react'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { StyledParentBox, StyledRowBox, StyledCartBox, StyledSearchField, StyledCartCounterTypography } from '../styles/appBarStyle';
+import { StyledParentBox, StyledRowBox, StyledCartBox, StyledSearchField, StyledCartCounterTypography, StyledAccountBox } from '../styles/appBarStyle';
 import { Cart } from '.';
+import { useRouter } from 'next/navigation';
+import CategoryIcon from '@mui/icons-material/Category';
 
 const AppBar = () => {
+    const router = useRouter();
 
     const handleOnCartClick = () => {
 
     }
+
+    const handleOrderClick = () => {
+        router.push('/orders')
+    }
+
     return (
         <>
             <StyledParentBox>
@@ -31,10 +39,15 @@ const AppBar = () => {
                     </InputAdornment>
                 }} />
 
-                <Box>
+                <Box sx={{ cursor: "pointer", justifyContent: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }} onClick={handleOrderClick}>
+                    <CategoryIcon />
+                    <Typography variant='subtitle2'>Orders</Typography>
+                </Box>
+
+                <StyledAccountBox >
                     <Typography variant='h6'>Hello, User</Typography>
                     <Typography variant='subtitle2'>Place your order</Typography>
-                </Box>
+                </StyledAccountBox>
                 <StyledCartBox onClick={handleOnCartClick}>
                     <ShoppingCartOutlinedIcon sx={{ fontSize: 50 }} />
                     <StyledCartCounterTypography variant='subtitle2'>0</StyledCartCounterTypography>

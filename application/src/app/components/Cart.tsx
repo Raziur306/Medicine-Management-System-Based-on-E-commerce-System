@@ -82,7 +82,7 @@ const Cart = () => {
         </Dialog>
 
 
-        <Dialog open={true}>
+        <Dialog open={false}>
             <Box sx={{ display: 'flex', flexDirection: 'column', p: 5, }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', mb: 2 }}>
                     <Typography variant='h6' fontWeight={'bold'}>Checkout</Typography>
