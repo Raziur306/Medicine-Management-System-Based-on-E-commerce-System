@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, Select, Button, Dialog, TextField } from '@mui/material'
+import { Box, Typography, Select, Button, Dialog, TextField, Radio } from '@mui/material'
 import { StyledCartCardBox, StyledParentBox, StyledCartImage, StyledCartSelect, StyledCheckoutBtn } from '../styles/cartStyle'
 import Image from 'next/image'
 import CloseIcon from '@mui/icons-material/Close';
@@ -22,6 +22,10 @@ const Cart = () => {
     }
 
     const handleAddressDialogSave = () => {
+
+    }
+
+    const handlePaymentDialogClose = () => {
 
     }
 
@@ -75,11 +79,34 @@ const Cart = () => {
                 <TextField sx={{ mb: 1 }} name='name' id="outlined-basic" label="Full Address *" variant="outlined" type='text' />
                 <StyledCheckoutBtn onClick={handleAddressDialogSave}>Save Address</StyledCheckoutBtn>
             </Box>
-
         </Dialog>
 
 
+        <Dialog open={true}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', p: 5, }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', mb: 2 }}>
+                    <Typography variant='h6' fontWeight={'bold'}>Checkout</Typography>
+                    <CloseIcon sx={{ cursor: 'pointer' }} onClick={handlePaymentDialogClose} />
+                </Box >
+                <Box sx={{ border: '1px solid #10837d26', }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', bgcolor: '#10837d26', p: 0.5, borderRadius: 1.5, justifyContent: 'space-between' }}>
+                        <Typography>To be paid</Typography>
+                        <Typography>৳ 133</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', p: 1 }}>
+                        <Radio />
+                        <Image width={250} height={70} alt='COD Payment' src={'/cod_icon.webp'} />
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', p: 1 }}>
+                        <Radio />
+                        <Image width={250} height={70} alt='COD Payment' src={'/cards_icon.webp'} />
+                    </Box>
 
+                </Box>
+                <StyledCheckoutBtn>Process Order</StyledCheckoutBtn>
+            </Box>
+
+        </Dialog>
     </>
     )
 }
