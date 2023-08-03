@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
-require('./database');
+const connectMongo = require("./database");
 
-app.listen(3000, () => {
+
+app.listen(3000, async () => {
     console.log("Server is connected.");
+    await connectMongo();
 });
 
 module.exports = app;
