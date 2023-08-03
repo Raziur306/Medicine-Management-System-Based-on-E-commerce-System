@@ -17,11 +17,11 @@ const schemaUser = mongoose.Schema({
     },
 
     licenseNumber: {
-        type: Number,
+        type: String,
     },
 
     phone: {
-        type: Number,
+        type: String,
 
     },
 
@@ -35,11 +35,7 @@ const schemaUser = mongoose.Schema({
         }
     },
 
-    password: {
-        type: String,
-        require: [true, "Password Required."],
-        minLength: [3, "Minimum password length 3."]
-    },
+    password: String,
     shippingAddress: String,
 })
 

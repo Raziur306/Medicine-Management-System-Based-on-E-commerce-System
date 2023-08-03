@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { registerUser, loginUser, products, getOrders, placeOrder } = require('../controller/user.controller');
+const  auth  = require('../middleware/auth');
+
 //register user
 router.post('/register', registerUser);
 
@@ -17,3 +19,5 @@ router.post('/order', auth, placeOrder);
 
 //get all getOrders
 router.get('/orders', auth, getOrders);
+
+module.exports = router;

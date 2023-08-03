@@ -15,7 +15,7 @@ const registerUser = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ response: false, message: "User already exist" })
         }
-        const hashedPassword = bcrypt.hash(password, saltRound);
+        const hashedPassword = await bcrypt.hash(password, saltRound);
         const result = await userModel.create({
             pharmacyName,
             email,
@@ -33,8 +33,8 @@ const registerUser = async (req, res) => {
 }
 
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
     try {
+        const { email, password } = req.body;
         const existingUser = await userModel.findOne({ email: email });
         if (!existingUser) {
             return res.status(404).json({ message: "User not found" })
@@ -47,7 +47,7 @@ const loginUser = async (req, res) => {
         }
 
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, process.env.SECRET_KEY)
-        res.status(200).json({ response: true, message: "Sign in success.", token: token });
+        res.status(200).json({ response: true, message: "Sign in success.", token: token, user_id: existingUser._id, });
     } catch (error) {
         res.send(500).json({ response: false, message: "Something went wrong" });
     }
@@ -85,6 +85,7 @@ const placeOrder = async (req, res) => {
             shippingAddress,
             paymentMethod,
             products,
+            orderStatus: "Pending",
         });
         res.status(201).json({ response: true, message: 'Order has placed successfully' });
     } catch (error) {

@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const schemaOrder = mongoose.Schema({
     user_id: mongoose.Schema.Types.ObjectId,
     order_id: Number,
@@ -9,7 +10,7 @@ const schemaOrder = mongoose.Schema({
             quantity: Number,
         }
     ],
-    orderStatus: 'Pending',
+    orderStatus: String,
     orderTotal: Number,
     shippingAddress: String,
     paymentMethod: String

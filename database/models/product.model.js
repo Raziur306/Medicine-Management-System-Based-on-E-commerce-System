@@ -1,4 +1,4 @@
-
+const mongoose = require('mongoose');
 
 const schemaProduct = mongoose.Schema({
     name: {
@@ -15,7 +15,7 @@ const schemaProduct = mongoose.Schema({
     },
     url: {
         type: String,
-    },
+    }
 });
 
 const Product = mongoose.model('products', schemaProduct);
