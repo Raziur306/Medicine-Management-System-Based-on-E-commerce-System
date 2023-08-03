@@ -13,7 +13,7 @@ router.get('/products', products);
 
 
 //order medicine 
-router.post('/order', placeOrder);
+router.post('/order', auth, placeOrder);
 
 //get all getOrders
-router.get('/orders', getOrders);
+router.get('/orders', auth, getOrders);
