@@ -9,6 +9,7 @@ const schemaOrder = mongoose.Schema({
             quantity: Number,
         }
     ],
+    orderStatus: 'Pending',
     orderTotal: Number,
     shippingAddress: String,
     paymentMethod: String
