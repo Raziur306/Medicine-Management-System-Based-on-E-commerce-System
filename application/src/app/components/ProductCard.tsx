@@ -22,7 +22,7 @@ const ProductCard = ({ id, name, price, url }) => {
             <Box sx={{ maxWidth: '300px', maxHeight: '300px', overflow: 'hidden' }}>
                 <StyledImage className='productCardImg' width={150} height={150} alt='Product' src={url} />
             </Box>
-            <Typography>name</Typography>
+            <Typography>{name}</Typography>
             <Typography>৳{price}</Typography>
             <StyledAddCartBtn>Add to Cart</StyledAddCartBtn>
         </StyledCardBox>

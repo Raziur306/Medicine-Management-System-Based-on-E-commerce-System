@@ -2,6 +2,7 @@ import { styled, Box, Select, Button } from "@mui/material";
 import Image from "next/image";
 
 export const StyledParentBox = styled(Box)({
+    minHeight: 500,
     maxWidth: 500,
     minWidth: 350,
     position: 'fixed',

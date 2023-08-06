@@ -66,9 +66,9 @@ const products = async (req, res) => {
 
 const getOrders = async (req, res) => {
     try {
-        const { user_id } = req.body;
+        const { user_id } = req.query;
         const allOrders = await orderModel.find({ user_id });
-        req.status(200).json({ response: true, orders: allOrders });
+        res.status(200).json({ response: true, orders: allOrders });
     } catch (error) {
         res.send(500).json({ response: false, message: "Something went wrong" });
     }

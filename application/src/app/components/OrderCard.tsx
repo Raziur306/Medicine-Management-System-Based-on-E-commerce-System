@@ -1,23 +1,36 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
-function OrderCard() {
+function OrderCard({ order_id, orderStatus, orderTotal }) {
+
+    const date = new Date(order_id);
+    const dateFormat = date.toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    });
+    const color = orderStatus == 'Pending' ? '#fcba03' : ('Cancel' ? 'Red' : 'Green');
+
+
     return (
-        <Box sx={{ maxWidth: 250, boxShadow: '1px 1px 10px black', p: 2, borderRadius: 5, cursor: 'pointer' }}>
+        <Box sx={{ minWidth: 300, minHeight: 200, boxShadow: '1px 1px 10px black', p: 2, borderRadius: 5, cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Typography>Order ID</Typography>
-                <Typography>#12323</Typography>
+                <Typography sx={{ fontWeight: 'bold' }}>#{order_id}</Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Typography>Date</Typography>
-                <Typography>12/07/2023, 12:34AM</Typography>
+                <Typography>{dateFormat}</Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Typography>Status</Typography>
-                <Typography>Delivered</Typography>
+                <Typography sx={{ bgcolor: color, p: 1, borderRadius: 10, fontWeight: 'bold', color: 'white' }}>{orderStatus}</Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Typography fontWeight={'bold'}>Amount Payable</Typography>
-                <Typography>Delivered</Typography>
+                <Typography sx={{ fontWeight: 'bold' }}>৳ {orderTotal}</Typography>
             </Box>
 
         </Box>

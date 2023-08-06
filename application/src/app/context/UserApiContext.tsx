@@ -21,7 +21,7 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
     const [allProducts, setAllProducts] = useState([]);
     const [cartProductList, setCartProductList] = useState<any[]>([]);
     const [isCartVisible, setIsCartVisible] = useState(false);
-
+    const [myOrders, setMyOrders] = useState([]);
 
 
     //user registration call using POST method.
@@ -131,8 +131,55 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
     }
 
 
-    const placeOrder = () => {
+    const placeOrderCall = async () => {
+        setIsLoading(true);
+        const { id, token } = JSON.parse(localStorage.getItem('userData')!);
 
+        let products: any[] = []
+        let price = 100;
+        await cartProductList.map((product, index) => {
+            const data = {
+                product_id: product.id,
+                name: product.name,
+                price: product.price,
+                quantity: product.quantity,
+            };
+            products = [
+                ...products,
+                data
+            ]
+            price += product.price;
+        })
+
+
+        await axios.post(BASE_URL + '/order', {
+            "user_id": id,
+            "order_id": Date.now(),
+            "products": products,
+            "orderStatus": "Pending",
+            "orderTotal": price,
+            "shippingAddress": 'Uttara, Dhaka 1230',
+            "paymentMethod": "COD",
+        })
+            .then((response) => {
+                setCartProductList([]);
+                setIsCartVisible(false);
+                setIsLoading(false);
+            }).catch((error) => {
+                console.log(error)
+                setIsLoading(false);
+            })
+    }
+
+    const getMyOrderCall = async () => {
+        const { id, token } = JSON.parse(localStorage.getItem('userData')!);
+        await axios.get(BASE_URL + '/orders', {
+            params: { 'user_id': id }
+        }).then((response) => {
+            setMyOrders(response.data.orders)
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
     return <UserApiContext.Provider value={{
@@ -150,7 +197,10 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
         setIsCartVisible,
         isCartVisible,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        placeOrderCall,
+        getMyOrderCall,
+        myOrders,
     }}>
         {children}
     </UserApiContext.Provider>
