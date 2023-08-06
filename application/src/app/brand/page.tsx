@@ -1,26 +1,45 @@
 'use client'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import Image from 'next/image'
 import { StyledParentBox, StyledPriceBox, StyledSubBox, StyledSubChildBox, StyledAddCartBtn } from '../styles/brandStyle';
 import { AppBar } from '../components';
+import { UserApiContext } from '../context/UserApiContext';
 
 const Brand = () => {
+    const { currentSelectedId, allProducts, cartProductList, setCartProductList, addToCart } = useContext(UserApiContext);
+    const [data, setData] = useState();
+
+    useEffect(() => {
+        allProducts?.forEach((product) => {
+            if (product._id == currentSelectedId) {
+                return setData(product);
+            }
+        })
+
+    }, [currentSelectedId])
+
+
+    const handleAddCartBtn = () => {
+        addToCart(data);
+    }
+
+
     return (
         <>
             <AppBar />
             <StyledParentBox>
                 <StyledSubBox>
-                    <Image width={450} height={450} alt='Mask Image' src={'/mask.webp'} />
+                    <Image width={450} height={450} alt='Mask' src={data?.url} />
                     <Box sx={{ display: 'flex', flexDirection: 'column', marginLeft: 10, }}>
-                        <Typography variant='h6' fontWeight={'bold'}>KN95 Face Mask 5 Layers Protection</Typography>
+                        <Typography variant='h6' fontWeight={'bold'}>{data?.name}</Typography>
                         <StyledSubChildBox>
                             <StyledPriceBox>
                                 <Typography variant='subtitle2' fontWeight={'bold'} sx={{ mr: 3 }}>Best Price</Typography>
-                                <Typography variant='subtitle1' fontWeight={'bold'}>৳22.00</Typography>
+                                <Typography variant='subtitle1' fontWeight={'bold'}>৳ {data?.price}</Typography>
                             </StyledPriceBox>
-                            <StyledAddCartBtn>Add to cart</StyledAddCartBtn>
+                            <StyledAddCartBtn onClick={handleAddCartBtn}>Add to cart</StyledAddCartBtn>
                         </StyledSubChildBox>
                     </Box>
                 </StyledSubBox>

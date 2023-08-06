@@ -12,7 +12,6 @@ const Home = () => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('userData')!!);
-    console.log(data);
     if (data) {
       setUserStatus(true);
     } else {

@@ -14,11 +14,14 @@ interface ChildrenType {
 
 export const UserApiContextProvider = ({ children }: ChildrenType) => {
     const BASE_URL = "http://localhost:4000/api/user"
+
+    const [currentSelectedId, setCurrentSelectedId] = useState('');
     const [showLogin, setShowLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+    const [allProducts, setAllProducts] = useState([]);
+    const [cartProductList, setCartProductList] = useState<any[]>([]);
+    const [isCartVisible, setIsCartVisible] = useState(false);
 
-
-    //checking is user already logged in
 
 
     //user registration call using POST method.
@@ -50,7 +53,6 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
             "password": password
         })
             .then((response) => {
-                console.log(response.data);
                 if (response.data.response) {
 
                     const data = JSON.stringify({
@@ -66,13 +68,89 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
     }
 
 
+    //GET Request to Fetch all Products data 
+    const allProductsCall = async () => {
+        setIsLoading(true);
+        await axios.get(BASE_URL + '/products')
+            .then((response) => {
+                if (response.data) {
+                    setAllProducts(response.data.products);
+                    setIsLoading(false);
+                }
+            }).catch((error) => {
+                console.log(error);
+                setIsLoading(false);
+            })
+    }
+
+
+
+    //add to cart product
+    const addToCart = async (data) => {
+        let status = true;
+        let cartData = {
+            id: data?._id,
+            name: data?.name,
+            price: data?.price,
+            url: data?.url,
+            quantity: 1
+        }
+        cartProductList.map((cart, index) => {
+            if (cartData.id == cart.id) {
+                status = false;
+                if ((cart.quantity < 5)) {
+                    cartData = {
+                        ...cartData,
+                        quantity: cart.quantity + 1
+                    }
+                    cartProductList.splice(index, 1);
+                    return setCartProductList([
+                        ...cartProductList,
+                        cartData
+                    ])
+                } else {
+                    return 0;
+                }
+            }
+        })
+        if (status) {
+            setCartProductList([
+                ...cartProductList,
+                cartData
+            ])
+        }
+
+    }
+
+    const removeFromCart = (productId) => {
+        cartProductList.map((cart, index) => {
+            if (productId == cart.id) {
+                setCartProductList(cartProductList.splice(index, 1))
+            }
+        })
+    }
+
+
+    const placeOrder = () => {
+
+    }
 
     return <UserApiContext.Provider value={{
         showLogin,
         setShowLogin,
         isLoading,
         registerUserCall,
-        loginCall
+        loginCall,
+        allProducts,
+        allProductsCall,
+        currentSelectedId,
+        setCurrentSelectedId,
+        cartProductList,
+        setCartProductList,
+        setIsCartVisible,
+        isCartVisible,
+        addToCart,
+        removeFromCart
     }}>
         {children}
     </UserApiContext.Provider>

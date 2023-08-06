@@ -7,6 +7,9 @@ const nextConfig = {
             transform: "@mui/icons-material/{{member}}",
         },
     },
+    images: {
+        domains: ['cdn1.arogga.com']
+    }
 }
 
 module.exports = nextConfig

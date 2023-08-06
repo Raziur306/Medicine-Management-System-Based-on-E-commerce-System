@@ -2,6 +2,7 @@ import { styled, Box, Select, Button } from "@mui/material";
 import Image from "next/image";
 
 export const StyledParentBox = styled(Box)({
+    maxWidth: 500,
     minWidth: 350,
     position: 'fixed',
     display: 'flex',
@@ -11,7 +12,7 @@ export const StyledParentBox = styled(Box)({
     zIndex: 999,
     right: 0,
     boxShadow: '1px 1px 20px black',
-    overflow: "hidden"
+    overflow: "hidden",
 });
 
 export const StyledCartCardBox = styled(Box)({
