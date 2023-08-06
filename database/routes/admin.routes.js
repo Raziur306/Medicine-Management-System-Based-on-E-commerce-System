@@ -5,13 +5,19 @@ const { loginAdmin, getAllOrder, updateOrderStatus, addNewProduct, addAdmin } = 
 const auth = require('../middleware/auth');
 
 //get all order data
-router.get('/all-order', auth, getAllOrder);
+router.get('/all-order', getAllOrder);
+
 //update order status
-router.post('/update-order', auth, updateOrderStatus);
+router.put('/update-order', updateOrderStatus);
+
 //add new product
-router.post('/add-product', auth, addNewProduct);
+router.post('/add-product', addNewProduct);
+
 //add new admin
 router.post('/new-admin', addAdmin);
+
+//admin login
+router.post('/login', loginAdmin)
 
 
 

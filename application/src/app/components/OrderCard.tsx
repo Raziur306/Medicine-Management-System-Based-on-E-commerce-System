@@ -11,7 +11,7 @@ function OrderCard({ order_id, orderStatus, orderTotal }) {
         minute: '2-digit',
         hour12: true,
     });
-    const color = orderStatus == 'Pending' ? '#fcba03' : ('Cancel' ? 'Red' : 'Green');
+    const color = orderStatus == 'Pending' ? '#fcba03' : (orderStatus == 'Delivered' ? 'green' : 'gray');
 
 
     return (

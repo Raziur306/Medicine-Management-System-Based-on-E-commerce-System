@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import ThemeRegistry from './theme/ThemeRegistry'
 import { UserApiContextProvider } from './context/UserApiContext'
+import { AdminApiContextProvider } from './context/AdminApiContext'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThemeRegistry>
-        <UserApiContextProvider>
-          <body className={inter.className}>{children}</body>
-        </UserApiContextProvider>
+        <AdminApiContextProvider>
+          <UserApiContextProvider>
+            <body className={inter.className}>{children}</body>
+          </UserApiContextProvider>
+        </AdminApiContextProvider>
       </ThemeRegistry>
     </html>
   )

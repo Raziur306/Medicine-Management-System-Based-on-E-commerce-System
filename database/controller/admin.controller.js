@@ -33,23 +33,20 @@ const loginAdmin = async (req, res) => {
 //admin request all order list
 const getAllOrder = async (req, res) => {
     try {
-        try {
-            const allOrders = await orderModel.find();
-            req.status(200).json({ response: true, orders: allOrders });
-        } catch (error) {
-            res.send(500).json({ response: false, message: "Something went wrong" });
-        }
+        const allOrders = await orderModel.find({});
+        res.status(200).json({ response: true, orders: allOrders });
     } catch (error) {
-
+        res.send(500).json({ response: false, message: "Something went wrong" });
     }
+
 }
 
 //update order current status(Cancel, Deliver, Pending etc)
 const updateOrderStatus = async (req, res) => {
     try {
         const { orderStatus, id } = req.body;
-        await orderModel.findByIdAndUpdate(id, { orderStatus }, true)
-
+        await orderModel.findByIdAndUpdate(id, { orderStatus }, { new: true })
+        res.status(200).json({ response: true, message: "Successful" });
     } catch (error) {
         res.send(500).json({ response: false, message: "Something went wrong" });
     }

@@ -1,7 +1,6 @@
 'use client'
 
 import axios from "axios";
-import { Faster_One } from "next/font/google";
 import React, { createContext, useState, useEffect } from "react";
 
 
