@@ -7,13 +7,11 @@ import { useRouter } from 'next/navigation'
 import { UserApiContext } from '../context/UserApiContext'
 
 const ProductCard = ({ id, name, price, url }) => {
-    const { setCurrentSelectedId } = useContext(UserApiContext)
 
     const router = useRouter();
 
     const handleOnProductClick = () => {
-        setCurrentSelectedId(id);
-        router.push('/brand');
+        router.push(`/brand/${id}`);
     }
 
 

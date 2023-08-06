@@ -15,7 +15,6 @@ interface ChildrenType {
 export const UserApiContextProvider = ({ children }: ChildrenType) => {
     const BASE_URL = "http://localhost:4000/api/user"
 
-    const [currentSelectedId, setCurrentSelectedId] = useState('');
     const [showLogin, setShowLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [allProducts, setAllProducts] = useState([]);
@@ -82,6 +81,10 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
                 setIsLoading(false);
             })
     }
+
+    useEffect(() => {
+        allProductsCall();
+    }, [])
 
 
 
@@ -182,6 +185,21 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
         })
     }
 
+
+    //on search filter
+    const [filteredProduct, setFilteredProduct] = useState([]);
+    const searchFilterCall = async (character) => {
+        const filteredProducts = await allProducts.filter(product => {
+            return product?.name.toLowerCase().includes(character);
+        });
+
+        setFilteredProduct(filteredProducts);
+        if (!character) {
+            setFilteredProduct([])
+        }
+
+    }
+
     return <UserApiContext.Provider value={{
         showLogin,
         setShowLogin,
@@ -189,9 +207,6 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
         registerUserCall,
         loginCall,
         allProducts,
-        allProductsCall,
-        currentSelectedId,
-        setCurrentSelectedId,
         cartProductList,
         setCartProductList,
         setIsCartVisible,
@@ -201,6 +216,8 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
         placeOrderCall,
         getMyOrderCall,
         myOrders,
+        searchFilterCall,
+        filteredProduct,
     }}>
         {children}
     </UserApiContext.Provider>

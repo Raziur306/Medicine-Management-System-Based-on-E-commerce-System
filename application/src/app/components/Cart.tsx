@@ -60,7 +60,8 @@ const Cart = () => {
     }
 
     const handleProcessOrder = () => {
-        placeOrderCall()
+        placeOrderCall();
+        setPaymentDialog(false);
     }
 
     return (<>

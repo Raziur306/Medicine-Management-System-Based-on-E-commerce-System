@@ -4,13 +4,8 @@ import { ProductCard } from '.'
 import { UserApiContext } from '../context/UserApiContext'
 
 const Products = () => {
-    const { allProducts, allProductsCall } = useContext(UserApiContext)
+    const { allProducts } = useContext(UserApiContext)
 
-    useEffect(() => {
-        allProductsCall()
-    }, [])
-
-  
     return (
         <Grid container spacing={5} justifyContent={'center'} sx={{ marginTop: 3 }}>
             {

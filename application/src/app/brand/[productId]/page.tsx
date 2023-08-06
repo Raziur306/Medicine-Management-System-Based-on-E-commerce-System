@@ -3,22 +3,26 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import Image from 'next/image'
-import { StyledParentBox, StyledPriceBox, StyledSubBox, StyledSubChildBox, StyledAddCartBtn } from '../styles/brandStyle';
-import { AppBar } from '../components';
-import { UserApiContext } from '../context/UserApiContext';
+import { StyledParentBox, StyledPriceBox, StyledSubBox, StyledSubChildBox, StyledAddCartBtn } from '../../styles/brandStyle';
+import { AppBar } from '../../components';
+import { UserApiContext } from '../../context/UserApiContext';
 
-const Brand = () => {
-    const { currentSelectedId, allProducts, cartProductList, setCartProductList, addToCart } = useContext(UserApiContext);
+type Params = {
+    params: {
+        productId: String
+    }
+}
+const Brand = ({ params: { productId } }: Params) => {
+    const { currentSelectedId, allProducts, addToCart } = useContext(UserApiContext);
     const [data, setData] = useState();
 
     useEffect(() => {
         allProducts?.forEach((product) => {
-            if (product._id == currentSelectedId) {
+            if (product._id == productId) {
                 return setData(product);
             }
         })
-
-    }, [currentSelectedId])
+    }, [allProducts])
 
 
     const handleAddCartBtn = () => {
