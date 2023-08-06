@@ -70,7 +70,7 @@ export const StyledCartCounterTypography = styled(Typography)({
     padding: 5,
     position: 'absolute',
     top: 33,
-    right: 56
+    right: 260
 });
 
 export const StyledAccountBox = styled(Box)({

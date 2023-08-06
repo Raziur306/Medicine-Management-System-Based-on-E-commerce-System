@@ -14,6 +14,7 @@ interface ChildrenType {
 export const UserApiContextProvider = ({ children }: ChildrenType) => {
     const BASE_URL = "http://localhost:4000/api/user"
 
+    const [isLoggedIn, setIsLoggedIn] = useState();
     const [showLogin, setShowLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [allProducts, setAllProducts] = useState([]);
@@ -58,6 +59,7 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
                         id: response.data.user_id
                     })
                     localStorage.setItem("userData", data);
+                    setIsLoggedIn(true);
                 }
             }).catch((error) => {
                 setIsLoading(false);
@@ -217,6 +219,8 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
         myOrders,
         searchFilterCall,
         filteredProduct,
+        isLoggedIn,
+        setIsLoggedIn,
     }}>
         {children}
     </UserApiContext.Provider>

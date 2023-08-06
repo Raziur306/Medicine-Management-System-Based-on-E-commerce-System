@@ -11,7 +11,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import { UserApiContext } from '../context/UserApiContext';
 
 const AppBar = () => {
-    const { isCartVisible, setIsCartVisible, cartProductList, searchFilterCall } = useContext(UserApiContext);
+    const { isCartVisible, setIsCartVisible, cartProductList, searchFilterCall, isLoggedIn, setIsLoggedIn } = useContext(UserApiContext);
     const router = useRouter();
 
     const handleOnCartClick = () => {
@@ -29,6 +29,11 @@ const AppBar = () => {
     const onChange = (e) => {
         const { value } = e.target;
         searchFilterCall(value);
+    }
+
+    const handleOnLogoutClick = () => {
+        setIsLoggedIn(false);
+        localStorage.removeItem('userData')
     }
 
 
@@ -65,6 +70,7 @@ const AppBar = () => {
                     <StyledCartCounterTypography variant='subtitle2'>{cartProductList.length}</StyledCartCounterTypography>
                     <Typography variant='subtitle2'>Cart</Typography>
                 </StyledCartBox>
+                <Typography sx={{ mr: 3, cursor: 'pointer' }} onClick={handleOnLogoutClick}>Logout</Typography>
             </StyledParentBox>
 
             <Cart />

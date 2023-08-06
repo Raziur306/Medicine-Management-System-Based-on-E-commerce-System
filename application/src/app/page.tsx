@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from 'react'
 import { UserApiContext } from './context/UserApiContext'
 
 const Home = () => {
-  const { showLogin } = useContext(UserApiContext);
+  const { showLogin, isLoggedIn, setIsLoggedIn, } = useContext(UserApiContext);
   const [userStatus, setUserStatus] = useState<Boolean>();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Home = () => {
     } else {
       setUserStatus(false);
     }
-  })
+  }, [isLoggedIn])
 
   if (userStatus == undefined) {
     return <>
