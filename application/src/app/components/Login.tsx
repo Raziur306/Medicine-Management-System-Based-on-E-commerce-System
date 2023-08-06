@@ -1,9 +1,9 @@
 'use client'
 import React, { useContext, useState } from 'react'
 import { StyledBox, StyledLoginBtn, StyledParentBox, StyledRegisterTypography, StyledTextField, StyledTypography, StyledTypographyBtn } from '../styles/loginStyle'
-import { LoginContext } from '../context/LoginContext'
+import { UserApiContext } from '../context/UserApiContext'
 function Login() {
-    const { showLogin, setShowLogin, isLoading } = useContext(LoginContext)
+    const { showLogin, setShowLogin, isLoading, loginCall } = useContext(UserApiContext)
 
     const [data, setData] = useState({
         email: "",
@@ -23,7 +23,7 @@ function Login() {
     }
 
     const handleOnLoginBtnClick = () => {
-
+        loginCall(data)
     }
 
 

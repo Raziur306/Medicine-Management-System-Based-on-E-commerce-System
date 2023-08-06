@@ -3,18 +3,35 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import { Login, Registration, Dashboard } from './components'
-import { useContext } from 'react'
-import { LoginContext } from './context/LoginContext'
+import { useContext, useEffect, useState } from 'react'
+import { UserApiContext } from './context/UserApiContext'
 
 const Home = () => {
-  const { showLogin, isLoading, isLoggedIn } = useContext(LoginContext)
+  const { showLogin } = useContext(UserApiContext);
+  const [userStatus, setUserStatus] = useState<Boolean>();
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('userData')!!);
+    console.log(data);
+    if (data) {
+      setUserStatus(true);
+    } else {
+      setUserStatus(false);
+    }
+  })
+
+  if (userStatus == undefined) {
+    return <>
+
+    </>
+  }
 
 
   return (
     <>
-      {(showLogin && !isLoggedIn) && <Login />}
-      {(!showLogin && !isLoggedIn) && <Registration />}
-      {isLoggedIn && <Dashboard />}
+      {(showLogin && !userStatus) && <Login />}
+      {(!showLogin && !userStatus) && <Registration />}
+      {userStatus && <Dashboard />}
     </>)
 }
 
