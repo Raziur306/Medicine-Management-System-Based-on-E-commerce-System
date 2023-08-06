@@ -2,14 +2,14 @@ const express = require('express');
 const app = require('./config/express');
 
 const userRoute = require('./routes/user.routes');
-// const adminRoute = require('./routes/admin.routes');
+const adminRoute = require('./routes/admin.routes');
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/user', userRoute);
-// app.use('/api/admin', adminRoute);
+app.use('/api/admin', adminRoute);
 
 
 app.get('/', (req, res) => {

@@ -36,10 +36,10 @@ function Home() {
                     <Typography>Add Product Details</Typography>
                     <CloseIcon />
                 </Box>
-                <TextField sx={{ m: 1 }} placeholder='Product Name' type='text' />
-                <TextField sx={{ m: 1 }} placeholder='Product Price' type='number' />
-                <TextField sx={{ m: 1 }} placeholder='Quantity' type='number' />
-                <TextField sx={{ m: 1 }} placeholder='Image url' type='text' />
+                <TextField sx={{ m: 1 }} name='name' placeholder='Product Name' type='text' />
+                <TextField sx={{ m: 1 }} name='price' placeholder='Product Price' type='number' />
+                <TextField sx={{ m: 1 }} name='quantity' placeholder='Quantity' type='number' />
+                <TextField sx={{ m: 1 }} name='url' placeholder='Image url' type='text' />
                 <Button sx={{
                     bgcolor: 'green', color: 'white', fontWeight: 'bold', ':hover': {
                         bgcolor: 'green'
