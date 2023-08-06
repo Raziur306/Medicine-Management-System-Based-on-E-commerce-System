@@ -1,9 +1,15 @@
 const express = require('express');
 const app = require('./config/express');
+var cors = require('cors')
 
 const userRoute = require('./routes/user.routes');
 const adminRoute = require('./routes/admin.routes');
 
+app.use(
+    cors({
+        origin: "http://localhost:3000"
+    })
+)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
