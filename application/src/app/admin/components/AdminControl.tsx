@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import TableBodyRow from './TableBodyRow';
 import { AdminApiContext } from '@/app/context/AdminApiContext';
 const AdminControl = () => {
-    const { addNewProductCall, updateOrderStatusCall, allOrders } = useContext(AdminApiContext)
+    const { addNewProductCall, updateOrderStatusCall, allOrders, setIsLoggedIn } = useContext(AdminApiContext)
     const [addNewProductDialog, setAddNewProductDialog] = useState(false);
     const [newProductData, setNewProductData] = useState({
         name: "",
@@ -33,19 +33,17 @@ const AdminControl = () => {
         setAddNewProductDialog(false);
     }
 
-    const handleUpdateBtn = () => {
-
+    const handleAdminLogoutClick = () => {
+        setIsLoggedIn(false);
+        localStorage.removeItem('adminToken');
     }
-
-
-
-
 
     return (<>
         <Box sx={{ p: 10 }}>
             <Typography sx={{ alignItems: 'center', fontWeight: 'bold', textAlign: 'center' }} variant='h4'>Admin Panel</Typography>
 
             <Button onClick={handleAddNewProductDialog} sx={{ bgcolor: 'green', color: 'white', fontWeight: 'bold', ':hover': { bgcolor: 'green' } }}>Add New Product</Button>
+            <Typography sx={{ display: 'flex', textAlignment: 'right', justifyContent: 'right', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleAdminLogoutClick}>Logout</Typography>
             <Box>
                 <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: 'green' }}>All Orders</Typography>
                 <Table>
@@ -82,6 +80,8 @@ const AdminControl = () => {
                 <TextField sx={{ m: 1 }} onChange={handleOnChange} name='price' placeholder='Product Price' type='number' />
                 <TextField sx={{ m: 1 }} onChange={handleOnChange} name='quantity' placeholder='Quantity' type='number' />
                 <TextField sx={{ m: 1 }} onChange={handleOnChange} name='url' placeholder='Image url' type='text' />
+                {/* New Text Box */}
+
                 <Button sx={{
                     bgcolor: 'green', color: 'white', fontWeight: 'bold', ':hover': {
                         bgcolor: 'green'

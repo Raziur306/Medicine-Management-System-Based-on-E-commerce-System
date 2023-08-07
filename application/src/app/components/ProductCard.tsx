@@ -23,6 +23,7 @@ const ProductCard = ({ id, name, price, url }) => {
             <Typography>{name}</Typography>
             <Typography>৳{price}</Typography>
             <StyledAddCartBtn>Add to Cart</StyledAddCartBtn>
+            {/* Add rating */}
         </StyledCardBox>
     )
 }

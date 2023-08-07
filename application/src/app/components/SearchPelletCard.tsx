@@ -21,7 +21,6 @@ const SearchPelletCard = ({ id, name, price, url }) => {
                 <Typography sx={{ fontSize: 15, fontWeight: 'bold' }} variant='subtitle2'>{name}</Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Typography sx={{ fontSize: 15, fontWeight: 700 }} variant='subtitle2'>Price: ৳ {price}</Typography>
-
                 </Box>
             </Box>
         </Box>

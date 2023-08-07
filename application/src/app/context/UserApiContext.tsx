@@ -89,43 +89,8 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
 
 
 
-    //add to cart product
-    const addToCart = async (data) => {
-        let status = true;
-        let cartData = {
-            id: data?._id,
-            name: data?.name,
-            price: data?.price,
-            url: data?.url,
-            quantity: 1
-        }
-        cartProductList.map((cart, index) => {
-            if (cartData.id == cart.id) {
-                status = false;
-                if ((cart.quantity < 5)) {
-                    cartData = {
-                        ...cartData,
-                        quantity: cart.quantity + 1
-                    }
-                    cartProductList.splice(index, 1);
-                    return setCartProductList([
-                        ...cartProductList,
-                        cartData
-                    ])
-                } else {
-                    return 0;
-                }
-            }
-        })
-        if (status) {
-            setCartProductList([
-                ...cartProductList,
-                cartData
-            ])
-        }
 
-    }
-
+    //remove item from cart
     const removeFromCart = (productId) => {
         cartProductList.map((cart, index) => {
             if (productId == cart.id) {
@@ -135,6 +100,7 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
     }
 
 
+    //place my order
     const placeOrderCall = async () => {
         setIsLoading(true);
         const { id, token } = JSON.parse(localStorage.getItem('userData')!);
@@ -175,6 +141,7 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
             })
     }
 
+    //get all my orders
     const getMyOrderCall = async () => {
         const { id, token } = JSON.parse(localStorage.getItem('userData')!);
         await axios.get(BASE_URL + '/orders', {
@@ -200,6 +167,47 @@ export const UserApiContextProvider = ({ children }: ChildrenType) => {
         }
 
     }
+
+
+    //add to cart product
+    const addToCart = async (data) => {
+        let status = true;
+        let cartData = {
+            id: data?._id,
+            name: data?.name,
+            price: data?.price,
+            url: data?.url,
+            quantity: 1
+        }
+        cartProductList.map((cart, index) => {
+            if (cartData.id == cart.id) {
+                status = false;
+                if ((cart.quantity < 5)) {
+                    cartData = {
+                        ...cartData,
+                        quantity: cart.quantity + 1
+                    }
+                    cartProductList.splice(index, 1);
+                    return setCartProductList([
+                        ...cartProductList,
+                        cartData
+                    ])
+                } else {
+                    return 0;
+                }
+            }
+        })
+        if (status) {
+            setCartProductList([
+                ...cartProductList,
+                cartData
+            ])
+        }
+
+    }
+
+
+
 
     return <UserApiContext.Provider value={{
         showLogin,

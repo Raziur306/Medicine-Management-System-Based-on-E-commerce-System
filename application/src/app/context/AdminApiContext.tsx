@@ -76,7 +76,8 @@ export const AdminApiContextProvider = ({ children }) => {
         loginCall,
         addNewProductCall,
         updateOrderStatusCall,
-        allOrders
+        allOrders,
+        setIsLoggedIn
     }}>
         {children}
     </AdminApiContext.Provider>
