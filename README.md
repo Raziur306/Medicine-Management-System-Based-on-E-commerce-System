@@ -13,3 +13,6 @@
 ![Search Item](/screenshot/search.png)
 ![Cart](/screenshot/cart.png)
 ![Place order](/screenshot/place_order.png)
+
+### Admin Panel
+![Place order](/screenshot/admin.png)
