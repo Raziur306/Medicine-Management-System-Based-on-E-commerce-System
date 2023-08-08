@@ -8,8 +8,8 @@
 * [MongoDB](https://www.mongodb.com/)
 
 ## 📸Screenshots
-![Login](/screenshots/login.png)
-![Dashboard](/screenshots/dashboard.png)
-![Search Item](/screenshots/search.png)
-![Cart](/screenshots/cart.png)
-![Place order](/screenshots/place-order.png)
+![Login](/screenshot/login.png)
+![Dashboard](/screenshot/dashboard.png)
+![Search Item](/screenshot/search.png)
+![Cart](/screenshot/cart.png)
+![Place order](/screenshot/place_order.png)
